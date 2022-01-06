@@ -1,5 +1,5 @@
 {
-  "name": "skill_issue",
+  "name": "skillissue",
   "private": true,
   "scripts": {
     "dev": "next dev",
