@@ -16,16 +16,11 @@ export default function Home() {
   const [ svgCustom, setSvgCustom ] = useState('');
   const getFonts = async () => {
     let response = fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
-      .then((resp) => {
-        console.log(resp);
-        return resp;
-      }).then((res) => {
+      .then((res) => {
         return res.json()
       });
     
     let fonts = await response;
-    console.log(fonts);
-    console.log(fonts.items)
     setFonts(fonts.items); 
   }
   
@@ -35,11 +30,8 @@ export default function Home() {
 
   const loadOT = async () => {
     if (!currFont) return;
-    console.log(currFont.files);
     const font = await opentype.load(currFont.files.regular);
     const path = font.getPath(inputText);
-    console.log(path)
-    console.log()
     const svgPath = path.toPathData();
     const boundingBox = path.getBoundingBox();
     const strokeWidth = 2;
@@ -82,7 +74,7 @@ export default function Home() {
           src: url('${currFont.files.regular}') format('truetype');
         }`} /> : <></>}
       <Select placeholder='Select a font'
-        onChange={ (event) => {setCurrFont(fonts[event.target.value]); console.log(fonts[event.target.value])} }
+        onChange={ (event) => setCurrFont(fonts[event.target.value]) }
       >
         { fonts.map((font, key) => <option key={key} value={key}>{font.family}</option>) }
       </Select>
@@ -94,7 +86,6 @@ export default function Home() {
       >{ inputText }</Text>
       <Button onClick={loadOT}>Render</Button>
       { !!svgCustom ? svgCustom : <></> }
-      <Button onClick={()=>{}}>Open in new window</Button> 
     </>
 
   )
