@@ -65,6 +65,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
+      </Head>
       { !!currFont ? <Global styles={`
         @font-face {
           font-family: '${currFont.family}';
