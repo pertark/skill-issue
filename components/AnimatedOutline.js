@@ -1,4 +1,4 @@
-const AnimatedOutline = ({ font, text, color='#000', stroke }) => {
+const AnimatedOutline = async ({ font, text, color='#000', stroke }) => {
   const fontOT = await opentype.load(font);
   const path = fontOT.getPath(text);
   console.log(path)
