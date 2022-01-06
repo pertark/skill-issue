@@ -35,7 +35,7 @@ export default function Home() {
 
   const loadOT = async () => {
     if (!currFont) return;
-
+    console.log(currFont.files);
     const font = await opentype.load(currFont.files.regular);
     const path = font.getPath(inputText);
     console.log(path)
