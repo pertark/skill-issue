@@ -6,6 +6,8 @@ import { Center, Flex, Spacer, Stack } from "@chakra-ui/react";
 
 const longLowerCharacters = 'gjpqy';
 const longLowerCharactersOffset = 15;
+const topCharacters = '~-='
+const toppestChars = '\'"`'
 
 const Banner = () => {
   
@@ -31,7 +33,7 @@ const Banner = () => {
         const boundingBox = path.getBoundingBox();
         const strokeWidth = 2;
         const width = boundingBox.x2 - boundingBox.x1 + strokeWidth*2;
-        const height = boundingBox.y2 - boundingBox.y1 + strokeWidth*2 + 2*longLowerCharactersOffset;
+        const height = boundingBox.y2 - boundingBox.y1 + strokeWidth*2 + 2*longLowerCharactersOffset + (toppestChars.includes(char) ? longLowerCharactersOffset : 0);
         const svg = (
           <Flex justifyContent={"space-between"} height={"100%"} direction={"column"}>
             <Flex></Flex>
@@ -40,7 +42,7 @@ const Banner = () => {
               fill='white'
               width={width}
               height={height}
-              viewBox={`${boundingBox.x1-strokeWidth} ${boundingBox.y1-strokeWidth-(!longLowerCharacters.includes(char) ? 0 : longLowerCharactersOffset)} ${width} ${height}`}
+              viewBox={`${boundingBox.x1-strokeWidth} ${boundingBox.y1-strokeWidth-(!longLowerCharacters.includes(char) ? 0 : longLowerCharactersOffset)-(topCharacters.includes(char) || toppestChars.includes(char) ? 0 : longLowerCharactersOffset)} ${width} ${height}`}
               key={j}
               margin={0}
             >
