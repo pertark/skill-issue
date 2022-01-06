@@ -16,7 +16,7 @@ const Banner = () => {
     const { message } = router.query
     if (!message) return;
 
-    const font = await opentype.load("http://fonts.gstatic.com/s/roboto/v29/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf");
+    const font = await opentype.load("https://fonts.gstatic.com/s/roboto/v29/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf");
     
     const words = message.split(" ");
     const ret = [];
