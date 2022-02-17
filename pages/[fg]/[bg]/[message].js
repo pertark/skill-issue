@@ -14,11 +14,27 @@ const Banner = () => {
   const router = useRouter();
   const [ content, setContent ] = useState()
 
+  var re = /^[0-9A-Fa-f]{6}/g;
   const { bg } = router.query;
 
+  if (re.test(bg)) {
+    bg = '#' + bg;
+    re.lastIndex = 0;
+  }
+
   useEffect(async ()=>{
-    const { message, fg, bg } = router.query
+    let { message, fg, bg } = router.query
     if (!message) return;
+
+    
+    if (re.test(fg)) {
+      fg = '#' + fg;
+      re.lastIndex = 0;
+    }
+    if (re.test(bg)) {
+      bg = '#' + bg;
+      re.lastIndex = 0;
+    }
 
     const font = await opentype.load("https://fonts.gstatic.com/s/roboto/v29/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf");
     
